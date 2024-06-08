@@ -1,0 +1,30 @@
+//multiple templates
+ #include <iostream>
+
+template<typename T>
+class MyClass {
+public:
+    // Template function to add two values of type T
+    T add(T a, T b) {
+        return a + b;
+    }
+
+    // Template function to multiply two values of type T
+    T multiply(T a, T b) {
+        return a * b;
+    }
+};
+
+int main() {
+    // Instantiate MyClass with int type
+    MyClass<int> intClass;
+    std::cout << "Addition of integers: " << intClass.add(5, 3) << std::endl;
+    std::cout << "Multiplication of integers: " << intClass.multiply(5, 3) << std::endl;
+
+    // Instantiate MyClass with float type
+    MyClass<float> floatClass;
+    std::cout << "Addition of floats: " << floatClass.add(3.5f, 2.5f) << std::endl;
+    std::cout << "Multiplication of floats: " << floatClass.multiply(3.5f, 2.5f) << std::endl;
+
+    return 0;
+}
