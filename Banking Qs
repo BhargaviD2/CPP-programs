@@ -1,0 +1,103 @@
+//bankacc Q without operator overloading
+#include<iostream>
+//#include<string>;
+using namespace std;
+class bankacc
+{
+    //string name;
+    int accno,depo,with;
+    double balance1,balance2,amount;
+    public:
+    bankacc()
+    {
+        //accno=0;
+        amount=0;
+        depo=0;
+        with=0;
+    }
+    bankacc(double amount)
+    {
+        this->amount=amount;
+        //this->with=with;
+    }
+    void deposit(int depo);
+    void withdraw(int with);
+    void display();
+};
+void bankacc::deposit(int depo)
+{
+    balance1=amount+depo;
+}
+void bankacc::withdraw(int with)
+{
+    balance2=balance1-with;
+}
+void bankacc::display()
+{
+    cout<<"Balance after deposit:"<<balance1<<"\n"<<"Balance after withdrawal:"<<balance2;
+}
+int main()
+{
+    int accno;
+    cout<<"Enter accno: ";
+    cin>>accno;
+    cout<<"For Account Number "<<accno<<":\n";
+    bankacc b(5000);
+    b.deposit(2000);
+    b.withdraw(1000);
+    b.display();
+}
+
+//BANKING Q3
+#include<iostream>
+//#include<string>;
+using namespace std;
+class bankacc
+{
+    //string name;
+    int accno,depo,with;
+    double balance,amount;
+    public:
+    bankacc()
+    {
+        //accno=0;
+        //amount=0;
+        depo=0;
+        with=0;
+    }
+    bankacc(double amount)
+    {
+        this->amount=amount;
+        //this->with=with;
+    }
+    bankacc operator ++(bankacc obj1);
+    bankacc operator --(bankacc obj);
+    void display();
+};
+bankacc bankacc::operator ++(bankacc obj1)
+{
+    bankacc temp1;
+    temp1.balance=temp1.amount+obj1.depo;
+}
+bankacc bankacc::operator --(bankacc obj)
+{
+    bankacc temp;
+    temp.balance=temp.amount-obj.with;
+}
+void bankacc::display()
+{
+    cout<<"Balance:"<<temp1.balance1<<"\n"<<"Balance after withdrawal:"<<temp.balance2;
+}
+int main()
+{
+    int accno;
+    cout<<"Enter accno: ";
+    cin>>accno;
+    cout<<"For Account Number "<<accno<<":\n";
+    bankacc b1(5000),b2(1000),b3(2000),b4,b5;
+    //b1.deposit(2000);
+    b4=b1++b3;
+    b5=b1--b2;
+    b4.display();
+    b5.display();
+}
