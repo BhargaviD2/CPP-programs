@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Function to merge two sorted arrays.
+void mergeSortedArrays(vector<int> &arr1, vector<int> &arr2) {
+    int m = arr1.size(), n = arr2.size();
+   
+    // Creating array, 'ARR3' to store elements of 'ARR1' and 'ARR2'.
+    vector<int> arr3(m + n);
+   
+    // Copying elements from 'ARR1' to 'ARR3'.
+    for (int i = 0; i < m; i++) {
+        arr3[i] = arr1[i];
+    }
+   
+    // Copying elements from 'ARR2' to 'ARR3'.
+    for (int i = 0; i < n; i++) {
+        arr3[i + m] = arr2[i];
+    }
+   
+    // Sorting 'ARR3'.
+    sort(arr3.begin(), arr3.end());
+   
+    // Putting elements back into 'ARR1' from 'ARR3'.
+    for (int i = 0; i < m; i++) {        arr1[i] = arr3[i];
+    }
+   
+    // Putting elements back into 'ARR2' from 'ARR3'.
+    for (int i = m; i < m + n; i++) {
+        arr2[i - m] = arr3[i];
+    }
+}
+
+int main() {
+    int m, n;
+   
+    // Taking input for 'ARR1'.
+    cin >> m;
+    vector<int> arr1(m);
+    for (int &element : arr1) {
+        cin >> element;
+    }
+   
+    // Taking input for 'ARR2'.
+    cin >> n;
+    vector<int> arr2(n);
+    for (int &element : arr2) {
+        cin >> element;
+    }
+   
+    // Calling function to merge the arrays, 'ARR1' and 'ARR2'.
+    mergeSortedArrays(arr1, arr2);
+   
+    // Printing elements of 'ARR1'.
+    for (int &element : arr1) {
+        cout << element << " ";
+    }
+
+    cout << endl;
+   
+    // Printing elements of 'ARR2'.
+    for (int &element : arr2) {
+        cout << element << " ";
+    }
+   
+    return 0;
+}
