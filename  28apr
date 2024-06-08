@@ -1,0 +1,200 @@
+//late binding/overriding
+ #include<iostream>
+ using namespace std;
+ class base
+ {
+     public:
+     void display()
+     {
+         cout<<"This is base class\n";
+     }
+     void show()
+     {
+         cout<<"To show that this is base class\n";
+     }
+ };
+ class derieved:public base
+ {
+     public:
+     void display()
+     {
+         cout<<"This is derieved class\n";
+     }
+ };
+ int main()
+ {
+     derieved dr;
+     base &bs=dr;
+     bs.display();
+     dr.display();
+     dr.show();
+ }
+ //abstract class,override keyword
+ #include<iostream>
+using namespace std;
+class Base{//abstact class so no obj
+    public :
+    virtual void PrintSomething()=0; //pure virtual fnc
+    void hello()
+    {
+        cout << "Hello";
+        
+    }
+};
+class Sub : public Base 
+{
+    public :
+    void PrintSomething() override 
+    {
+        cout << "Sub class function \n"; 
+        hello(); 
+        
+    }
+};
+int main() 
+{
+    Sub s; 
+    s.PrintSomething();
+    return 0; 
+        
+}
+//user input for w and h,func with no arg used
+ #include<iostream>
+ using namespace std;
+ class p
+ {
+     protected:
+     int width,height;
+     public:
+     void get()
+     {
+         cout<<"Enter width:";
+         cin>>width;
+         cout<<"Enter height: ";
+         cin>>height;
+     }
+     //void set(int a,int b)
+     //{
+     //    width=a;
+     //    height=b;
+    // }
+     virtual int area()=0;
+ };
+ class r:public p
+ {
+     public:
+     int area()
+     {
+         return width*height;
+     }
+ };
+ class t:public p
+ {
+     public:
+     int area()
+     {
+         return width*height/2;
+     }
+ };
+ int main()
+ {
+    
+     r rect;
+     t tri;
+     p *p1=&rect;
+     p *p2=&tri;
+     p1->get();
+     p2->get();
+     //p1->set(2,4);
+     //p2->set(2,4);
+     cout<<p1->area()<<"\n";
+     cout<<p2->area();
+ }
+
+ //user input,func with arg
+  #include<iostream>
+ using namespace std;
+ class p
+ {
+     public:
+     int width,height;
+     
+     void get()
+     {
+         cout<<"Enter width:";
+         cin>>width;
+         cout<<"Enter height: ";
+         cin>>height;
+     }
+     //void set(int a,int b)
+     //{
+     //    width=a;
+     //    height=b;
+    // }
+     virtual int area(int w, int h)=0;
+ };
+ class r:public p
+ {
+     public:
+     int area(int w,int h)
+     {
+         return width*height;
+     }
+ };
+ class t:public p
+ {
+     public:
+     int area(int w, int h)
+     {
+         return width*height/2;
+     }
+ };
+ int main()
+ {
+    
+     r rect;
+     t tri;
+     p *p1=&rect;
+     p *p2=&tri;
+     p1->get();
+     p2->get();
+    int width1 = p1->width;
+    int height1 = p1->height;
+    int width2 = p2->width;
+    int height2 = p2->height;
+    
+    cout << "Area of rectangle: " << p1->area(width1, height1) << "\n";
+    cout << "Area of triangle: " << p2->area(width2, height2);
+    
+    return 0;
+ }
+ //multiple templates
+ #include <iostream>
+
+template<typename T>
+class MyClass {
+public:
+    // Template function to add two values of type T
+    T add(T a, T b) {
+        return a + b;
+    }
+
+    // Template function to multiply two values of type T
+    T multiply(T a, T b) {
+        return a * b;
+    }
+};
+
+int main() {
+    // Instantiate MyClass with int type
+    MyClass<int> intClass;
+    std::cout << "Addition of integers: " << intClass.add(5, 3) << std::endl;
+    std::cout << "Multiplication of integers: " << intClass.multiply(5, 3) << std::endl;
+
+    // Instantiate MyClass with float type
+    MyClass<float> floatClass;
+    std::cout << "Addition of floats: " << floatClass.add(3.5f, 2.5f) << std::endl;
+    std::cout << "Multiplication of floats: " << floatClass.multiply(3.5f, 2.5f) << std::endl;
+
+    return 0;
+}
