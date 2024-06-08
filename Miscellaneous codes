@@ -1,0 +1,111 @@
+//binary operator
+#include<iostream>
+using namespace std;//using member function
+class complex
+{
+    int real,img;
+    public:
+    complex()//default 
+    {
+        real=0;
+        img=0;
+    }
+    complex(int real,int img)//parameterized
+    {
+        this->real=real;
+        this->img=img;
+    }
+    complex operator +(complex obj);//one arg to be passed,returntype is the class name itself.
+    void display();
+    
+};
+complex complex::operator +(complex obj)
+{
+    complex temp;
+    temp.real=real+obj.real;
+    temp.img=img+obj.img;
+    return temp;
+}
+void complex::display()
+{
+    cout<<real<<"+i"<<img;
+}
+int main()
+{
+    complex c1(5,10),c2(10,20),c3;
+    c3=c1+c2;
+    c3.display();
+}
+//thorugh friend function
+#include<iostream>
+using namespace std;//using member function
+class complex
+{
+    int real,img;
+    public:
+    complex()//default 
+    {
+        real=0;
+        img=0;
+    }
+    complex(int real,int img)//parameterized
+    {
+        this->real=real;
+        this->img=img;
+    }
+    friend complex operator +(complex A,complex B);//two arg to be passed,returntype is the class name itself.
+    void display();
+    
+};
+complex operator +(complex A,complex B)
+{
+    complex temp;
+    temp.real=A.real+B.real;
+    temp.img=A.img+B.img;
+    return temp;
+}
+void complex::display()
+{
+    cout<<real<<"+i"<<img;
+}
+int main()
+{
+    complex c1(5,10),c2(10,20),c3;
+    c3=c1+c2;
+    c3.display();
+}
+//adding two coordinates
+#include<iostream>
+using namespace std;
+class point
+{
+    int x,y;
+    public:
+    point()
+    {
+        x=0;
+        y=0;
+    }
+    point(int x,int y)
+    {
+        this->x=x;
+        this->y=y;
+    }
+    point operator +(point obj)
+    {
+        point p;
+        p.x=x+obj.x;
+        p.y=y+obj.y;
+        return p;
+    }
+    void display()
+    {
+        cout<<"x:"<<x<<","<<"y:"<<y;
+    }
+};
+int main()
+{
+    point p1(2,3),p2(3,4),p3;
+    p3=p1+p2;
+    p3.display();
+}
