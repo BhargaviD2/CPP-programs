@@ -1,0 +1,77 @@
+//overloading +,-,*,/ and << for complex no operations
+#include<iostream>
+using namespace std;
+class complex
+{
+    int real,img;
+    public:
+    complex()
+    {
+        real=0;
+        img=0;
+    }
+    complex(int real,int img)
+    {
+        this->real=real;
+        this->img=img;
+    }
+    complex operator +(complex obj);
+    complex operator -(complex obj);
+    complex operator *(complex obj);
+    complex operator /(complex obj);
+    void display();
+    friend ostream& operator <<(ostream& output,complex& obj);
+};
+complex complex::operator +(complex obj)
+{
+    complex temp;
+    temp.real=real+obj.real;
+    temp.img=img+obj.img;
+    return temp;
+}
+complex complex::operator -(complex obj)
+{
+    complex temp;
+    temp.real=real-obj.real;
+    temp.img=img-obj.img;
+    return temp;
+}
+complex complex::operator *(complex obj)
+{
+    complex temp;
+    temp.real=real*obj.real;
+    temp.img=img*obj.img;
+    return temp;
+}
+complex complex::operator /(complex obj)
+{
+    complex temp;
+    temp.real=real/obj.real;
+    temp.img=img/obj.img;
+    return temp;
+}
+void complex::display()
+{
+    cout<<real<<"+i"<<img<<"\n";
+}
+ostream& operator <<(ostream& output,complex& obj)
+{
+    output << obj.real<<"+i"<<obj.img<<"\n";
+    return output;
+}
+int main()
+{
+    complex c1(5,7),c2(3,4),c3,c4,c5,c6;
+    c3=c1+c2;
+    c3.display();
+    c4=c1-c2;
+    c4.display(); 
+    c5=c1*c2;
+    c5.display();
+    c6=c1/c2;
+    c6.display();
+    cout<<c3;
+    cout<<c4;
+    cout<<c5;
+    cout<<c6;
+}   
