@@ -1,0 +1,58 @@
+#include<iostream>
+using namespace std;
+class Sequence
+{
+    private:
+    int size;
+    int *arr;
+    public:
+    Sequence(int n)
+    {
+        this->size=n;
+        this->arr=new int[n];
+    }
+    void input();
+    void reduce();
+    int compute_weight();
+    ~Sequence()
+    {
+        delete[]arr;
+    }
+};
+void Sequence::input()
+{
+    for(int i=0;i<this->size;i++)
+    {
+        cout<<"Enter element"<<i+1<<":";
+        cin>>this->arr[i];
+    }
+}
+void Sequence::reduce()
+{
+    int currentSize=this->size;
+    while(currentSize>1)
+    {
+        int numberOfReductions=0;
+        for(int i=0;i<currentSize/2;i++)
+        {
+            this->arr[i]+=this->arr[currentSize-i-1];
+            numberOfReductions++;
+        }
+        currentSize-=numberOfReductions;
+    }
+}
+int Sequence::compute_weight()
+{
+    reduce();
+    return this->arr[0];
+}
+int main()
+{
+    int n;
+    cout<<"Enter number of elements: ";
+    cin>>n;
+    Sequence seq(n);
+    seq.input();
+    cout<<"Weight of the sequnec is: "<<seq.compute_weight()<<endl;
+    return 0;
+}
